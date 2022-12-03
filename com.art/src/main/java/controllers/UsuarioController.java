@@ -85,19 +85,27 @@ public class UsuarioController {
 
 	}
 
-	public void getUsuarios() {
+	public String[] getUsuarios() {
 		SessionFactory sessionFactory = new Configuration().configure("hibernate.cfg.xml")
 				.addAnnotatedClass(Usuario.class).buildSessionFactory();
+
 		Session session = sessionFactory.openSession();
-		
+
 		CriteriaBuilder builder = session.getCriteriaBuilder();
 		CriteriaQuery<Usuario> criteria = builder.createQuery(Usuario.class);
 		criteria.from(Usuario.class);
 		List<Usuario> data = session.createQuery(criteria).getResultList();
-		 for(Usuario a : data) {
-			 System.out.println(a.toString());
-		 }
 
+		String salida = "";
+		for (Usuario a : data) {
+//			 System.out.println(a.toString());
+			salida += a.toString();
+			salida += ":";
+		} // Fin Para
+
+		String[] salidaBuena;
+		salidaBuena = salida.split(":");
+		return salidaBuena;
 	}
 
 }
