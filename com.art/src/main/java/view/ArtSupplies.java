@@ -25,6 +25,7 @@ public class ArtSupplies extends JFrame {
 			public void run() {
 				try {
 					ArtSupplies frame = new ArtSupplies();
+					frame.setLocationRelativeTo(null);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
