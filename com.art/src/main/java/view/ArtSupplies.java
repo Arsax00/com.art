@@ -15,6 +15,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
 
 import javax.swing.ImageIcon;
+import javax.swing.JComboBox;
 
 public class ArtSupplies extends JFrame {
     int xMouse, yMouse;
@@ -46,7 +47,7 @@ public class ArtSupplies extends JFrame {
 		setUndecorated(true);
 		setBackground(new Color(240, 255, 255));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 913, 711);
+		setBounds(100, 100, 1066, 758);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(240, 248, 255));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -55,7 +56,7 @@ public class ArtSupplies extends JFrame {
 		
 		JPanel header = new JPanel();
 		header.setBackground(new Color(255, 255, 255));
-		header.setBounds(0, 0, 913, 52);
+		header.setBounds(0, 0, 1066, 52);
 		contentPane.add(header);
 		header.setLayout(null);
 
@@ -101,65 +102,199 @@ public class ArtSupplies extends JFrame {
 			});
 			
 			
-			exit.setBackground(new Color(240, 248, 255));
-			exit.setBounds(839, 0, 74, 52);
+			exit.setBackground(new Color(255, 255, 255));
+			exit.setBounds(990, 0, 76, 52);
 			header.add(exit);
 			exit.setLayout(null);
 			
 				lblExit.setFont(new Font("Comic Sans MS", Font.BOLD, 25));
 				lblExit.setHorizontalTextPosition(SwingConstants.CENTER);
 				lblExit.setHorizontalAlignment(SwingConstants.CENTER);
-				lblExit.setBounds(0, 0, 74, 52);
+				lblExit.setBounds(0, 0, 76, 52);
 				exit.add(lblExit);
 				
 				JPanel menu = new JPanel();
-				menu.setBackground(new Color(178, 34, 34));
-				menu.setBounds(0, 0, 109, 52);
+				menu.setBackground(new Color(65, 105, 225));
+				menu.setBounds(0, 0, 150, 52);
 				header.add(menu);
 				menu.setLayout(null);
 				
 				JLabel lblMenu = new JLabel("");
-				lblMenu.setBackground(new Color(178, 34, 34));
+				lblMenu.setBackground(new Color(0, 0, 205));
 				lblMenu.setIcon(new ImageIcon(ArtSupplies.class.getResource("/Imagenes/iconHome2.png")));
 				lblMenu.setForeground(new Color(178, 34, 34));
 				lblMenu.setFont(new Font("Comic Sans MS", Font.BOLD, 20));
 				lblMenu.setHorizontalAlignment(SwingConstants.CENTER);
-				lblMenu.setBounds(0, 0, 109, 52);
+				lblMenu.setBounds(0, 0, 150, 52);
 				menu.add(lblMenu);
 				
-				JLabel lblMenu_1 = new JLabel("");
-				lblMenu_1.setHorizontalAlignment(SwingConstants.CENTER);
-				lblMenu_1.setForeground(new Color(178, 34, 34));
-				lblMenu_1.setFont(new Font("Comic Sans MS", Font.BOLD, 20));
-				lblMenu_1.setBackground(Color.WHITE);
-				lblMenu_1.setBounds(108, 0, 109, 52);
-				header.add(lblMenu_1);
+				JPanel Clientes = new JPanel();
+				Clientes.setLayout(null);
+				Clientes.setBackground(new Color(240, 248, 255));
+				Clientes.setBounds(149, 0, 150, 52);
+				header.add(Clientes);
+				
+				JLabel lblClientes = new JLabel("Clientes");
+				lblClientes.setHorizontalAlignment(SwingConstants.CENTER);
+				lblClientes.setForeground(new Color(178, 34, 34));
+				lblClientes.setFont(new Font("Comic Sans MS", Font.BOLD, 20));
+				lblClientes.setBackground(new Color(240, 248, 255));
+				lblClientes.setBounds(0, 0, 150, 52);
+				Clientes.add(lblClientes);
+				Clientes.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseEntered(MouseEvent e) {
+						Clientes.setBackground(new Color(178, 34, 34));
+						lblClientes.setForeground(new Color(240, 248, 255));	
+						
+					}
+					
+					@Override
+					public void mouseExited(MouseEvent e) {
+					Clientes.setBackground(new Color(240, 248, 255));
+					lblClientes.setForeground(new Color(178, 34, 34));	
+						
+					}
+					
+					@Override
+					public void mouseClicked(MouseEvent e) {
+						
+						Cliente c= new Cliente();
+						
+						setVisible(false);
+						
+						c.setVisible(true);
+						
+						
+					}
+					
+					
+					
+				});
+			
+		
+			
+				
+				JPanel Productos = new JPanel();
+				Productos.setLayout(null);
+				Productos.setBackground(new Color(240, 248, 255));
+				Productos.setBounds(298, 0, 150, 52);
+				header.add(Productos);
+				
+				JLabel lblProductos = new JLabel("Productos");
+				lblProductos.setHorizontalAlignment(SwingConstants.CENTER);
+				lblProductos.setForeground(new Color(178, 34, 34));
+				lblProductos.setFont(new Font("Comic Sans MS", Font.BOLD, 20));
+				lblProductos.setBackground(new Color(240, 248, 255));
+				lblProductos.setBounds(0, 0, 150, 52);
+				Productos.add(lblProductos);
+				
+				Productos.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseEntered(MouseEvent e) {
+						Productos.setBackground(new Color(178, 34, 34));
+						lblProductos.setForeground(new Color(240, 248, 255));	
+						
+					}
+					
+					@Override
+					public void mouseExited(MouseEvent e) {
+					Productos.setBackground(new Color(240, 248, 255));
+					lblProductos.setForeground(new Color(178, 34, 34));	
+						
+					}
+				});
+
+				JPanel Ventas = new JPanel();
+				Ventas.setLayout(null);
+				Ventas.setBackground(new Color(240, 248, 255));
+				Ventas.setBounds(448, 0, 150, 52);
+				header.add(Ventas);
+				
+				JLabel lblVentas = new JLabel("Ventas");
+				lblVentas.setHorizontalAlignment(SwingConstants.CENTER);
+				lblVentas.setForeground(new Color(178, 34, 34));
+				lblVentas.setFont(new Font("Comic Sans MS", Font.BOLD, 20));
+				lblVentas.setBackground(new Color(240, 248, 255));
+				lblVentas.setBounds(0, 0, 150, 52);
+				Ventas.add(lblVentas);
+				
+				Ventas.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseEntered(MouseEvent e) {
+						Ventas.setBackground(new Color(178, 34, 34));
+						lblVentas.setForeground(new Color(240, 248, 255));
+	
+					}
+					
+					@Override
+					public void mouseExited(MouseEvent e) {
+					   Ventas.setBackground(new Color(240, 248, 255));
+					   lblVentas.setForeground(new Color(178, 34, 34));	
+						
+					}
+				});
+				
+				JPanel Proveedores = new JPanel();
+				Proveedores.setLayout(null);
+				Proveedores.setBackground(new Color(240, 248, 255));
+				Proveedores.setBounds(598, 0, 150, 52);
+				header.add(Proveedores);
+				
+				JLabel lblProveedores = new JLabel("Proveedores");
+				lblProveedores.setHorizontalAlignment(SwingConstants.CENTER);
+				lblProveedores.setForeground(new Color(178, 34, 34));
+				lblProveedores.setFont(new Font("Comic Sans MS", Font.BOLD, 20));
+				lblProveedores.setBackground(new Color(240, 248, 255));
+				lblProveedores.setBounds(0, 0, 150, 52);
+				Proveedores.add(lblProveedores);
+				
+				Proveedores.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseEntered(MouseEvent e) {
+						Proveedores.setBackground(new Color(178, 34, 34));
+						lblProveedores.setForeground(new Color(240, 248, 255));
+					}
+					
+					@Override
+					public void mouseExited(MouseEvent e) {
+						Proveedores.setBackground(new Color(240, 248, 255));
+						lblProveedores.setForeground(new Color(178, 34, 34));	
+						
+					}
+				});
+				
 		
 		JPanel banner = new JPanel();
 		banner.setBackground(new Color(255, 255, 255));
-		banner.setBounds(622, 0, 291, 711);
+		banner.setBounds(747, 0, 319, 769);
 		contentPane.add(banner);
 		banner.setLayout(null);
 		
 		JLabel lblLogo = new JLabel("");
 		lblLogo.setIcon(new ImageIcon(ArtSupplies.class.getResource("/Imagenes/logo.png")));
 		lblLogo.setHorizontalAlignment(SwingConstants.CENTER);
-		lblLogo.setBounds(0, 52, 297, 262);
+		lblLogo.setBounds(0, 52, 319, 262);
 		banner.add(lblLogo);
 		
 		JLabel lblEmail = new JLabel("Email: ArtSuppliesSMJ@gmail.com");
+		lblEmail.setBackground(new Color(65, 105, 225));
+		lblEmail.setHorizontalAlignment(SwingConstants.LEFT);
 		lblEmail.setForeground(new Color(0, 0, 139));
-		lblEmail.setBounds(42, 325, 169, 23);
+		lblEmail.setBounds(76, 325, 169, 23);
 		banner.add(lblEmail);
 		
-		JLabel lblTfn = new JLabel("Tel\u00E9fono: 954307521");
+		JLabel lblTfn = new JLabel("Telefono: 954307521");
+		lblTfn.setBackground(new Color(65, 105, 225));
 		lblTfn.setForeground(new Color(0, 0, 139));
-		lblTfn.setBounds(42, 397, 169, 23);
+		lblTfn.setBounds(76, 397, 169, 23);
 		banner.add(lblTfn);
 		
-		JLabel lblDireccin = new JLabel("Direcci\u00F3n: Sevilla, C/Desgracia 27, 3\u00BA B");
+		JLabel lblDireccin = new JLabel("Direccion: Sevilla, C/Desgracia 27, 3\u00BA B");
+		lblDireccin.setBackground(new Color(65, 105, 225));
+		lblDireccin.setHorizontalAlignment(SwingConstants.LEFT);
 		lblDireccin.setForeground(new Color(0, 0, 139));
-		lblDireccin.setBounds(42, 359, 193, 23);
+		lblDireccin.setBounds(76, 359, 193, 23);
 		banner.add(lblDireccin);
 	}
 }
