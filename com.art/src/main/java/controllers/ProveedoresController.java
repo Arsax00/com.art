@@ -1,5 +1,6 @@
 package controllers;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.criteria.CriteriaBuilder;
@@ -87,7 +88,7 @@ public class ProveedoresController {
 
 	}
 
-	public String[] getProveedores() {
+	public List<String> getProveedores() {
 		SessionFactory sessionFactory = new Configuration().configure("hibernate.cfg.xml")
 				.addAnnotatedClass(Proveedores.class).buildSessionFactory();
 
@@ -107,6 +108,13 @@ public class ProveedoresController {
 
 		String[] salidaBuena;
 		salidaBuena = salida.split(":");
-		return salidaBuena;
+
+		List<String> lista = new ArrayList<String>();
+		
+		for (String a : salidaBuena) {
+			lista.add(a);
+		}//Fin Para
+
+		return lista;
 	}
 }
