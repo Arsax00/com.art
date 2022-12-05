@@ -36,6 +36,8 @@ public class Proveedores implements Serializable {
 	@Column(name = "observaciones")
 	private String observaciones;
 
+	public Proveedores() {}
+	
 	public Proveedores(String cif, String nombre, String dir, int telf, String email, String web, int fax,
 			String observaciones) {
 		super();
