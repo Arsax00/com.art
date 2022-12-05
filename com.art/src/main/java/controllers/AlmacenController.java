@@ -1,5 +1,6 @@
 package controllers;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.criteria.CriteriaBuilder;
@@ -10,7 +11,6 @@ import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
 import models.Almacen;
-import models.Usuario;
 
 public class AlmacenController {
 	public String createAlmacen(String nom, int cant, int com, int ven) {
@@ -87,7 +87,7 @@ public class AlmacenController {
 
 	}
 
-	public String[] getAlmacenes() {
+	public List<String> getAlmacenes() {
 		SessionFactory sessionFactory = new Configuration().configure("hibernate.cfg.xml")
 				.addAnnotatedClass(Almacen.class).buildSessionFactory();
 
@@ -107,6 +107,13 @@ public class AlmacenController {
 
 		String[] salidaBuena;
 		salidaBuena = salida.split(":");
-		return salidaBuena;
+
+		List<String> lista = new ArrayList<String>();
+
+		for (String a : salidaBuena) {
+			lista.add(a);
+		} // Fin Para
+
+		return lista;
 	}
 }
