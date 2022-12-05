@@ -39,6 +39,8 @@ public class Clientes implements Serializable {
 	@Column(name = "observaciones")
 	private String observaciones;
 
+	public Clientes() {}
+	
 	public Clientes(String cif, String nombre, String apellidos, String dir, int telf, String email, String web,
 			int fax, String observaciones) {
 		super();
