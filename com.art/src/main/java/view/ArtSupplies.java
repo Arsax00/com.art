@@ -289,11 +289,11 @@ public class ArtSupplies extends JFrame {
 		lblTfn.setBounds(76, 397, 169, 23);
 		banner.add(lblTfn);
 		
-		JLabel lblDireccin = new JLabel("Direccion: Sevilla, C/Desgracia 27, 3\u00BA B");
-		lblDireccin.setBackground(new Color(65, 105, 225));
-		lblDireccin.setHorizontalAlignment(SwingConstants.LEFT);
-		lblDireccin.setForeground(new Color(0, 0, 139));
-		lblDireccin.setBounds(76, 359, 193, 23);
-		banner.add(lblDireccin);
+		JLabel lblDireccion = new JLabel("Direccion: Sevilla, C/Desgracia 27, 3\u00BA B");
+		lblDireccion.setBackground(new Color(65, 105, 225));
+		lblDireccion.setHorizontalAlignment(SwingConstants.LEFT);
+		lblDireccion.setForeground(new Color(0, 0, 139));
+		lblDireccion.setBounds(76, 359, 193, 23);
+		banner.add(lblDireccion);
 	}
 }

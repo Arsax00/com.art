@@ -6,6 +6,9 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import controllers.UsuarioController;
+
 import java.awt.Color;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
@@ -17,17 +20,22 @@ import java.awt.event.MouseMotionAdapter;
 import javax.swing.ImageIcon;
 import javax.swing.JTextField;
 import javax.swing.JSeparator;
+import javax.swing.JButton;
 
 public class Cliente extends JFrame {
 	int xMouse, yMouse;
 	private JPanel contentPane;
 	private JTextField textNombre;
 	private JTextField textApellido;
-	private JTextField textField;
+	private JTextField textApellido2;
+	private JTextField txtCalle;
+	private JTextField txtExamplegmailcom;
 
 	/**
 	 * Launch the application.
 	 */
+	UsuarioController uc = new UsuarioController();
+	private JTextField txtN;
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -306,6 +314,8 @@ public class Cliente extends JFrame {
 		contentPane.add(lblInsert);
 		
 		textNombre = new JTextField();
+		textNombre.setForeground(new Color(192, 192, 192));
+		textNombre.setText("Pepe");
 		textNombre.setBounds(165, 140, 125, 20);
 		contentPane.add(textNombre);
 		textNombre.setColumns(10);
@@ -317,6 +327,8 @@ public class Cliente extends JFrame {
 		contentPane.add(lblNombre);
 		
 		textApellido = new JTextField();
+		textApellido.setForeground(new Color(192, 192, 192));
+		textApellido.setText("Ramirez");
 		textApellido.setColumns(10);
 		textApellido.setBounds(165, 184, 125, 20);
 		contentPane.add(textApellido);
@@ -337,9 +349,88 @@ public class Cliente extends JFrame {
 		lblApellido2.setBounds(27, 227, 128, 20);
 		contentPane.add(lblApellido2);
 		
-		textField = new JTextField();
-		textField.setColumns(10);
-		textField.setBounds(165, 227, 125, 20);
-		contentPane.add(textField);
+		textApellido2 = new JTextField();
+		textApellido2.setForeground(new Color(192, 192, 192));
+		textApellido2.setText("Vivaldi");
+		textApellido2.setColumns(10);
+		textApellido2.setBounds(165, 227, 125, 20);
+		contentPane.add(textApellido2);
+		
+		JLabel lblDireccion2 = new JLabel("Direccion:");
+		lblDireccion2.setForeground(new Color(178, 34, 34));
+		lblDireccion2.setFont(new Font("Comic Sans MS", Font.BOLD, 15));
+		lblDireccion2.setBounds(27, 269, 86, 20);
+		contentPane.add(lblDireccion2);
+		
+		JTextField txtDireccion = new JTextField();
+		txtDireccion.setForeground(new Color(192, 192, 192));
+		txtDireccion.setText("Calle");
+		txtDireccion.setBounds(165, 271, 63, 20);
+		contentPane.add(txtDireccion);
+		txtDireccion.setColumns(10);
+		
+		JLabel lblTelefono = new JLabel("Telefono:");
+		lblTelefono.setForeground(new Color(178, 34, 34));
+		lblTelefono.setFont(new Font("Comic Sans MS", Font.BOLD, 15));
+		lblTelefono.setBounds(27, 309, 86, 20);
+		contentPane.add(lblTelefono);
+		
+		JTextField txtTelefono = new JTextField();
+		txtTelefono.setForeground(new Color(192, 192, 192));
+		txtTelefono.setText("954431224");
+		txtTelefono.setBounds(165, 311, 125, 20);
+		contentPane.add(txtTelefono);
+		txtTelefono.setColumns(10);
+		
+		JLabel lblEmail2 = new JLabel("Email:");
+		lblEmail2.setForeground(new Color(178, 34, 34));
+		lblEmail2.setFont(new Font("Comic Sans MS", Font.BOLD, 15));
+		lblEmail2.setBounds(27, 354, 86, 20);
+		contentPane.add(lblEmail2);
+		
+		txtExamplegmailcom = new JTextField();
+		txtExamplegmailcom.setText("example@gmail.com");
+		txtExamplegmailcom.setForeground(Color.LIGHT_GRAY);
+		txtExamplegmailcom.setColumns(10);
+		txtExamplegmailcom.setBounds(165, 356, 125, 20);
+		contentPane.add(txtExamplegmailcom);
+		
+		//Botón donde se crean los usuarios
+		JButton btnInsert = new JButton("Enviar");
+		
+		btnInsert.setBackground(new Color(100, 149, 237));
+		btnInsert.setForeground(new Color(178, 34, 34));
+		btnInsert.setBounds(112, 412, 101, 31);
+		contentPane.add(btnInsert);
+		
+		txtN = new JTextField();
+		txtN.setText("n\u00BA");
+		txtN.setForeground(Color.LIGHT_GRAY);
+		txtN.setColumns(10);
+		txtN.setBounds(251, 271, 39, 20);
+		contentPane.add(txtN);
+		btnInsert.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				btnInsert.setBackground(new Color(180, 35, 35));
+				btnInsert.setForeground(new Color(100, 149, 237));	
+				String nombre= textNombre.getText();
+				
+				String apellido= textApellido.getText();
+				
+				String direccion= txtDireccion.getText()+" "+txtN.getText();
+				
+				uc.createUsuario(nombre,apellido,direccion);
+				
+			}
+	
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				
+				btnInsert.setBackground(new Color(100, 149, 237));
+				btnInsert.setForeground(new Color(178, 34, 34));
+			}
+		});
+	
 	}
 }
