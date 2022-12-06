@@ -1,5 +1,7 @@
 package controllers;
 
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.criteria.CriteriaBuilder;
@@ -9,104 +11,112 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
-import models.Clientes;
+import models.Almacen;
+import models.Ventas;
 
-public class ClientesController {
-	public String createClientes(String cif, String nom, String apes, String dir, int telf, String email, String web,
-			int fax, String observaciones) {
+public class VentasController {
+
+	
+	
+	public String createVentas(String date, Float precio, int cantidad) {
 		SessionFactory sessionFactory = new Configuration().configure("hibernate.cfg.xml")
-				.addAnnotatedClass(Clientes.class).buildSessionFactory();
+				.addAnnotatedClass(Ventas.class).buildSessionFactory();
 
 		Session session = sessionFactory.openSession();
 
 		try {
-			Clientes clientes = new Clientes(cif, nom, apes, dir, telf, email, web, fax, observaciones);
+			Ventas usuario = new Ventas(date, precio, cantidad);
 
 			session.beginTransaction();
 
-			session.save(clientes);
+			session.save(usuario);
 
 			session.getTransaction().commit();
 
 			session.close();
 
-			return "Entrada en clientes creada";
+			return "Usuario creado";
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
-		return "Error al registrar la entrada en clientes";
+		return "Error al registrar la venta";
 	}
 
-	public String deleteCliente(int cif) {
+	public String deleteVentas(int id) {
 		SessionFactory sessionFactory = new Configuration().configure("hibernate.cfg.xml")
-				.addAnnotatedClass(Clientes.class).buildSessionFactory();
+				.addAnnotatedClass(Ventas.class).buildSessionFactory();
 
-		Session session = sessionFactory.openSession();
-
-		try {
-
-			session.beginTransaction();
-
-			Clientes clientes = session.get(Clientes.class, cif);
-
-			session.delete(clientes);
-
-			session.getTransaction().commit();
-
-			session.close();
-			return "Entrada en clientes borrada";
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return "Error al borrar la entrada en clientes";
-
-	}
-
-	public String getCliente(int cif) {
-
-		SessionFactory sessionFactory = new Configuration().configure("hibernate.cfg.xml")
-				.addAnnotatedClass(Clientes.class).buildSessionFactory();
 		Session session = sessionFactory.openSession();
 		try {
 
 			session.beginTransaction();
 
-			Clientes clientes = session.get(Clientes.class, cif);
+			Ventas usuario = session.get(Ventas.class, id);
+
+			session.delete(usuario);
 
 			session.getTransaction().commit();
 
 			session.close();
-			return clientes.toString();
+			return "Usuario borrado";
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return "Error al obtener la entrada de clientes";
+		return "Error al borrar la venta";
+	}
+
+	public String getVentas(int id) {
+
+		SessionFactory sessionFactory = new Configuration().configure("hibernate.cfg.xml")
+				.addAnnotatedClass(Ventas.class).buildSessionFactory();
+		Session session = sessionFactory.openSession();
+		try {
+
+			session.beginTransaction();
+
+			Ventas usuario = session.get(Ventas.class, id);
+
+			session.getTransaction().commit();
+
+			session.close();
+			return usuario.toString();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "Error al obtener la venta";
 
 	}
 
-	public String[] getClientes() {
+	public List<String> getVentas() {
 		SessionFactory sessionFactory = new Configuration().configure("hibernate.cfg.xml")
-				.addAnnotatedClass(Clientes.class).buildSessionFactory();
+				.addAnnotatedClass(Ventas.class).buildSessionFactory();
 
 		Session session = sessionFactory.openSession();
 
 		CriteriaBuilder builder = session.getCriteriaBuilder();
-		CriteriaQuery<Clientes> criteria = builder.createQuery(Clientes.class);
-		criteria.from(Clientes.class);
-		List<Clientes> data = session.createQuery(criteria).getResultList();
+		CriteriaQuery<Ventas> criteria = builder.createQuery(Ventas.class);
+		criteria.from(Almacen.class);
+		List<Ventas> data = session.createQuery(criteria).getResultList();
 
 		String salida = "";
-		for (Clientes a : data) {
-//			 System.out.println(a.toString());
+		for (Ventas a : data) {
+
 			salida += a.toString();
 			salida += ":";
-		} // Fin Para
-
+		} 
 		String[] salidaBuena;
 		salidaBuena = salida.split(":");
-		return salidaBuena;
+
+		List<String> lista = new ArrayList<String>();
+
+		for (String a : salidaBuena) {
+			lista.add(a);
+		}
+
+		return lista;
 	}
+
 }

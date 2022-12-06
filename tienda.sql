@@ -31,8 +31,8 @@ CREATE TABLE `almacen` (
   `id` int(9) NOT NULL,
   `nombre` varchar(25) NOT NULL,
   `cantidad` int(9) NOT NULL,
-  `precio_compra` float NOT NULL,
-  `precio_venta` float NOT NULL
+  `precio_compra` float(9) NOT NULL,
+  `precio_venta` float(9) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -86,7 +86,7 @@ CREATE TABLE `proveedores` (
 CREATE TABLE `ventas` (
   `id` int(9) NOT NULL,
   `fecha` date NOT NULL,
-  `precio` float NOT NULL,
+  `precio` float(9) NOT NULL,
   `cantidad` int(9) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
