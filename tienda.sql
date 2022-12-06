@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.1.3
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 05-12-2022 a las 19:04:02
--- Versión del servidor: 10.4.27-MariaDB
--- Versión de PHP: 8.1.12
+-- Tiempo de generación: 06-12-2022 a las 16:56:19
+-- Versión del servidor: 10.4.24-MariaDB
+-- Versión de PHP: 7.1.32
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -31,9 +31,17 @@ CREATE TABLE `almacen` (
   `id` int(9) NOT NULL,
   `nombre` varchar(25) NOT NULL,
   `cantidad` int(9) NOT NULL,
-  `precio_compra` float(9) NOT NULL,
-  `precio_venta` float(9) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `precio_compra` float NOT NULL,
+  `precio_venta` float NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `almacen`
+--
+
+INSERT INTO `almacen` (`id`, `nombre`, `cantidad`, `precio_compra`, `precio_venta`) VALUES
+(1, 'consolador del betis', 50, 200, 400),
+(2, 'consolador sevilla', 20, 10, 20);
 
 -- --------------------------------------------------------
 
@@ -42,23 +50,16 @@ CREATE TABLE `almacen` (
 --
 
 CREATE TABLE `clientes` (
-  `CIF` varchar(9) NOT NULL,
+  `id` int(9) NOT NULL,
   `Nombre` varchar(25) NOT NULL,
   `Apellidos` varchar(25) DEFAULT NULL,
-  `Direccion` varchar(50) NOT NULL,
+  `Dirección` varchar(50) NOT NULL,
   `Telefono` int(9) NOT NULL,
   `Email` varchar(40) NOT NULL,
   `Web` varchar(30) NOT NULL,
   `Fax` int(9) DEFAULT NULL,
   `Observaciones` varchar(200) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Volcado de datos para la tabla `clientes`
---
-
-INSERT INTO `clientes` (`CIF`, `Nombre`, `Apellidos`, `Direccion`, `Telefono`, `Email`, `Web`, `Fax`, `Observaciones`) VALUES
-('B79949947', 'Agencia Tributaria', NULL, 'Plaza Mayor, nº 16. 45700', 900200800, 'tuladron@gob.es', 'www.teatributo.es', 900200800, '');
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -67,7 +68,7 @@ INSERT INTO `clientes` (`CIF`, `Nombre`, `Apellidos`, `Direccion`, `Telefono`, `
 --
 
 CREATE TABLE `proveedores` (
-  `CIF` varchar(9) NOT NULL,
+  `id` int(9) NOT NULL,
   `nombre` varchar(25) NOT NULL,
   `direccion` varchar(25) NOT NULL,
   `telefono` int(9) NOT NULL,
@@ -75,7 +76,7 @@ CREATE TABLE `proveedores` (
   `web` varchar(25) NOT NULL,
   `fax` int(9) DEFAULT NULL,
   `observaciones` varchar(200) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -86,9 +87,9 @@ CREATE TABLE `proveedores` (
 CREATE TABLE `ventas` (
   `id` int(9) NOT NULL,
   `fecha` date NOT NULL,
-  `precio` float(9) NOT NULL,
+  `precio` float NOT NULL,
   `cantidad` int(9) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Índices para tablas volcadas
@@ -104,7 +105,13 @@ ALTER TABLE `almacen`
 -- Indices de la tabla `clientes`
 --
 ALTER TABLE `clientes`
-  ADD PRIMARY KEY (`CIF`);
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `proveedores`
+--
+ALTER TABLE `proveedores`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indices de la tabla `ventas`
@@ -120,6 +127,18 @@ ALTER TABLE `ventas`
 -- AUTO_INCREMENT de la tabla `almacen`
 --
 ALTER TABLE `almacen`
+  MODIFY `id` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT de la tabla `clientes`
+--
+ALTER TABLE `clientes`
+  MODIFY `id` int(9) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `proveedores`
+--
+ALTER TABLE `proveedores`
   MODIFY `id` int(9) NOT NULL AUTO_INCREMENT;
 
 --
