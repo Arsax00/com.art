@@ -16,11 +16,13 @@ import java.awt.event.MouseMotionAdapter;
 
 import javax.swing.ImageIcon;
 import javax.swing.JTextField;
+import javax.swing.JSeparator;
 
 public class Cliente extends JFrame {
 	int xMouse, yMouse;
 	private JPanel contentPane;
 	private JTextField textNombre;
+	private JTextField textApellido;
 	private JTextField textField;
 
 	/**
@@ -275,33 +277,36 @@ public class Cliente extends JFrame {
 		banner.add(lblLogo);
 
 		JLabel lblEmail = new JLabel("Email: ArtSuppliesSMJ@gmail.com");
+		lblEmail.setFont(new Font("Comic Sans MS", Font.PLAIN, 12));
 		lblEmail.setBackground(new Color(65, 105, 225));
 		lblEmail.setHorizontalAlignment(SwingConstants.LEFT);
 		lblEmail.setForeground(new Color(0, 0, 139));
-		lblEmail.setBounds(76, 325, 169, 23);
+		lblEmail.setBounds(60, 325, 228, 23);
 		banner.add(lblEmail);
 
 		JLabel lblTfn = new JLabel("Telefono: 954307521");
+		lblTfn.setFont(new Font("Comic Sans MS", Font.PLAIN, 12));
 		lblTfn.setBackground(new Color(65, 105, 225));
 		lblTfn.setForeground(new Color(0, 0, 139));
-		lblTfn.setBounds(76, 397, 169, 23);
+		lblTfn.setBounds(60, 397, 228, 23);
 		banner.add(lblTfn);
 
-		JLabel lblDireccin = new JLabel("Direccion: Sevilla, C/Desgracia 27, 3\u00BA B");
-		lblDireccin.setBackground(new Color(65, 105, 225));
-		lblDireccin.setHorizontalAlignment(SwingConstants.LEFT);
-		lblDireccin.setForeground(new Color(0, 0, 139));
-		lblDireccin.setBounds(76, 359, 193, 23);
-		banner.add(lblDireccin);
+		JLabel lblDireccion = new JLabel("Direccion: Sevilla, C/Desgracia 27, 3\u00BA B");
+		lblDireccion.setFont(new Font("Comic Sans MS", Font.PLAIN, 12));
+		lblDireccion.setBackground(new Color(65, 105, 225));
+		lblDireccion.setHorizontalAlignment(SwingConstants.LEFT);
+		lblDireccion.setForeground(new Color(0, 0, 139));
+		lblDireccion.setBounds(60, 359, 228, 23);
+		banner.add(lblDireccion);
 		
 		JLabel lblInsert = new JLabel("Insertar:");
-		lblInsert.setForeground(new Color(178, 34, 34));
+		lblInsert.setForeground(new Color(65, 105, 225));
 		lblInsert.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
 		lblInsert.setBounds(27, 94, 86, 20);
 		contentPane.add(lblInsert);
 		
 		textNombre = new JTextField();
-		textNombre.setBounds(115, 140, 125, 20);
+		textNombre.setBounds(165, 140, 125, 20);
 		contentPane.add(textNombre);
 		textNombre.setColumns(10);
 		
@@ -311,15 +316,30 @@ public class Cliente extends JFrame {
 		lblNombre.setBounds(27, 140, 86, 20);
 		contentPane.add(lblNombre);
 		
+		textApellido = new JTextField();
+		textApellido.setColumns(10);
+		textApellido.setBounds(165, 184, 125, 20);
+		contentPane.add(textApellido);
+		
+		JLabel lblApellido1 = new JLabel("Primer apellido:");
+		lblApellido1.setForeground(new Color(178, 34, 34));
+		lblApellido1.setFont(new Font("Comic Sans MS", Font.BOLD, 15));
+		lblApellido1.setBounds(27, 184, 119, 20);
+		contentPane.add(lblApellido1);
+		
+		JSeparator separator = new JSeparator();
+		separator.setBounds(557, 158, 1, 2);
+		contentPane.add(separator);
+		
+		JLabel lblApellido2 = new JLabel("Segundo apellido:");
+		lblApellido2.setForeground(new Color(178, 34, 34));
+		lblApellido2.setFont(new Font("Comic Sans MS", Font.BOLD, 15));
+		lblApellido2.setBounds(27, 227, 128, 20);
+		contentPane.add(lblApellido2);
+		
 		textField = new JTextField();
 		textField.setColumns(10);
-		textField.setBounds(115, 184, 125, 20);
+		textField.setBounds(165, 227, 125, 20);
 		contentPane.add(textField);
-		
-		JLabel lblNombre_1 = new JLabel("Nombre:");
-		lblNombre_1.setForeground(new Color(178, 34, 34));
-		lblNombre_1.setFont(new Font("Comic Sans MS", Font.BOLD, 15));
-		lblNombre_1.setBounds(27, 184, 86, 20);
-		contentPane.add(lblNombre_1);
 	}
 }
