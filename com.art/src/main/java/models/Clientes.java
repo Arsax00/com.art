@@ -55,9 +55,8 @@ public class Clientes implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Clientes [id=" + cif + ", nombre=" + nombre + ", apellidos=" + apellidos + ", direccion=" + direccion
-				+ ", telefono=" + telefono + ", email=" + email + ", web=" + web + ", fax=" + fax + ", observaciones="
-				+ observaciones + "]";
+		return "ID: " + cif + ", nombre: " + nombre + ", apellidos: " + apellidos + ", direccion: " + direccion
+				+ ", telefono: " + telefono + ", email: " + email;
 	}
 
 	public String getCif() {

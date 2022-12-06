@@ -9,95 +9,97 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
-import models.Usuario;
+import models.Clientes;
 
-public class UsuarioController {
-
-	public String createUsuario(String nombre, String apellido, String direccion) {
+public class ClientesController {
+	public String createClientes(String cif, String nom, String apes, String dir, int telf, String email, String web,
+			int fax, String observaciones) {
 		SessionFactory sessionFactory = new Configuration().configure("hibernate.cfg.xml")
-				.addAnnotatedClass(Usuario.class).buildSessionFactory();
+				.addAnnotatedClass(Clientes.class).buildSessionFactory();
 
 		Session session = sessionFactory.openSession();
 
 		try {
-			Usuario usuario = new Usuario(nombre, apellido, direccion);
+			Clientes clientes = new Clientes(cif, nom, apes, dir, telf, email, web, fax, observaciones);
 
 			session.beginTransaction();
 
-			session.save(usuario);
+			session.save(clientes);
 
 			session.getTransaction().commit();
 
 			session.close();
 
-			return "Usuario creado";
+			return "Entrada en clientes creada";
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
-		return "Error al registrar el usuario";
+		return "Error al registrar la entrada en clientes";
 	}
 
-	public String deleteUsuario(int id) {
+	public String deleteCliente(int cif) {
 		SessionFactory sessionFactory = new Configuration().configure("hibernate.cfg.xml")
-				.addAnnotatedClass(Usuario.class).buildSessionFactory();
+				.addAnnotatedClass(Clientes.class).buildSessionFactory();
 
+		Session session = sessionFactory.openSession();
+
+		try {
+
+			session.beginTransaction();
+
+			Clientes clientes = session.get(Clientes.class, cif);
+
+			session.delete(clientes);
+
+			session.getTransaction().commit();
+
+			session.close();
+			return "Entrada en clientes borrada";
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "Error al borrar la entrada en clientes";
+
+	}
+
+	public String getCliente(int cif) {
+
+		SessionFactory sessionFactory = new Configuration().configure("hibernate.cfg.xml")
+				.addAnnotatedClass(Clientes.class).buildSessionFactory();
 		Session session = sessionFactory.openSession();
 		try {
 
 			session.beginTransaction();
 
-			Usuario usuario = session.get(Usuario.class, id);
-
-			session.delete(usuario);
+			Clientes clientes = session.get(Clientes.class, cif);
 
 			session.getTransaction().commit();
 
 			session.close();
-			return "Usuario borrado";
+			return clientes.toString();
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return "Error al borrar el usuario";
-	}
-
-	public String getUsuario(int id) {
-
-		SessionFactory sessionFactory = new Configuration().configure("hibernate.cfg.xml")
-				.addAnnotatedClass(Usuario.class).buildSessionFactory();
-		Session session = sessionFactory.openSession();
-		try {
-
-			session.beginTransaction();
-
-			Usuario usuario = session.get(Usuario.class, id);
-
-			session.getTransaction().commit();
-
-			session.close();
-			return usuario.toString();
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return "Error al obtener el usuario";
+		return "Error al obtener la entrada de clientes";
 
 	}
 
-	public String[] getUsuarios() {
+	public String[] getClientes() {
 		SessionFactory sessionFactory = new Configuration().configure("hibernate.cfg.xml")
-				.addAnnotatedClass(Usuario.class).buildSessionFactory();
+				.addAnnotatedClass(Clientes.class).buildSessionFactory();
 
 		Session session = sessionFactory.openSession();
 
 		CriteriaBuilder builder = session.getCriteriaBuilder();
-		CriteriaQuery<Usuario> criteria = builder.createQuery(Usuario.class);
-		criteria.from(Usuario.class);
-		List<Usuario> data = session.createQuery(criteria).getResultList();
+		CriteriaQuery<Clientes> criteria = builder.createQuery(Clientes.class);
+		criteria.from(Clientes.class);
+		List<Clientes> data = session.createQuery(criteria).getResultList();
 
 		String salida = "";
-		for (Usuario a : data) {
+		for (Clientes a : data) {
 //			 System.out.println(a.toString());
 			salida += a.toString();
 			salida += ":";
@@ -107,5 +109,4 @@ public class UsuarioController {
 		salidaBuena = salida.split(":");
 		return salidaBuena;
 	}
-
 }

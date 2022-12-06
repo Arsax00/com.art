@@ -1,13 +1,14 @@
 package view;
 
 import java.awt.BorderLayout;
+
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import controllers.UsuarioController;
+import controllers.ClientesController;
 
 import java.awt.Color;
 import javax.swing.JLabel;
@@ -29,19 +30,19 @@ public class Cliente extends JFrame {
 	private JTextField textApellido;
 	private JTextField textApellido2;
 	private JTextField txtCalle;
-	private JTextField txtExamplegmailcom;
+	private JTextField txtEmail;
 
 	/**
 	 * Launch the application.
 	 */
-	UsuarioController uc = new UsuarioController();
+	ClientesController uc = new ClientesController();
 	private JTextField txtN;
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
 					Cliente frame = new Cliente();
-				
+					frame.setVisible(true);
 				
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -62,6 +63,11 @@ public class Cliente extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1066, 758);
 		contentPane = new JPanel();
+		contentPane.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+			}
+		});
 		contentPane.setBackground(new Color(240, 248, 255));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -314,6 +320,11 @@ public class Cliente extends JFrame {
 		contentPane.add(lblInsert);
 		
 		textNombre = new JTextField();
+		textNombre.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+			}
+		});
 		textNombre.setForeground(new Color(192, 192, 192));
 		textNombre.setText("Pepe");
 		textNombre.setBounds(165, 140, 125, 20);
@@ -327,6 +338,11 @@ public class Cliente extends JFrame {
 		contentPane.add(lblNombre);
 		
 		textApellido = new JTextField();
+		textApellido.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+			}
+		});
 		textApellido.setForeground(new Color(192, 192, 192));
 		textApellido.setText("Ramirez");
 		textApellido.setColumns(10);
@@ -350,6 +366,11 @@ public class Cliente extends JFrame {
 		contentPane.add(lblApellido2);
 		
 		textApellido2 = new JTextField();
+		textApellido2.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+			}
+		});
 		textApellido2.setForeground(new Color(192, 192, 192));
 		textApellido2.setText("Vivaldi");
 		textApellido2.setColumns(10);
@@ -363,6 +384,11 @@ public class Cliente extends JFrame {
 		contentPane.add(lblDireccion2);
 		
 		JTextField txtDireccion = new JTextField();
+		txtDireccion.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+			}
+		});
 		txtDireccion.setForeground(new Color(192, 192, 192));
 		txtDireccion.setText("Calle");
 		txtDireccion.setBounds(165, 271, 63, 20);
@@ -376,6 +402,11 @@ public class Cliente extends JFrame {
 		contentPane.add(lblTelefono);
 		
 		JTextField txtTelefono = new JTextField();
+		txtTelefono.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+			}
+		});
 		txtTelefono.setForeground(new Color(192, 192, 192));
 		txtTelefono.setText("954431224");
 		txtTelefono.setBounds(165, 311, 125, 20);
@@ -388,12 +419,20 @@ public class Cliente extends JFrame {
 		lblEmail2.setBounds(27, 354, 86, 20);
 		contentPane.add(lblEmail2);
 		
-		txtExamplegmailcom = new JTextField();
-		txtExamplegmailcom.setText("example@gmail.com");
-		txtExamplegmailcom.setForeground(Color.LIGHT_GRAY);
-		txtExamplegmailcom.setColumns(10);
-		txtExamplegmailcom.setBounds(165, 356, 125, 20);
-		contentPane.add(txtExamplegmailcom);
+		txtEmail = new JTextField();
+		txtEmail.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				txtEmail.setText("");
+				txtEmail.setForeground(new Color(178, 34, 34));
+			}
+				
+			});
+		txtEmail.setText("example@gmail.com");
+		txtEmail.setForeground(Color.LIGHT_GRAY);
+		txtEmail.setColumns(10);
+		txtEmail.setBounds(165, 356, 125, 20);
+		contentPane.add(txtEmail);
 		
 		//Botón donde se crean los usuarios
 		JButton btnInsert = new JButton("Enviar");
@@ -404,6 +443,13 @@ public class Cliente extends JFrame {
 		contentPane.add(btnInsert);
 		
 		txtN = new JTextField();
+		txtN.addMouseListener(new MouseAdapter() {
+			public void mouseEntered(MouseEvent e) {
+				txtN.setText("");
+				txtN.setForeground(new Color(178, 34, 34));
+			}
+		
+		});
 		txtN.setText("n\u00BA");
 		txtN.setForeground(Color.LIGHT_GRAY);
 		txtN.setColumns(10);
@@ -416,11 +462,18 @@ public class Cliente extends JFrame {
 				btnInsert.setForeground(new Color(100, 149, 237));	
 				String nombre= textNombre.getText();
 				
-				String apellido= textApellido.getText();
+				String apellidos= textApellido.getText()+" "+textApellido2.getText();
 				
 				String direccion= txtDireccion.getText()+" "+txtN.getText();
 				
-				uc.createUsuario(nombre,apellido,direccion);
+				String email= txtEmail.getText();
+				String telefono= txtTelefono.getText();
+				int tfn;
+				tfn=Integer.parseInt(telefono);
+				String cif="111aa";
+				String web="patato";
+				String obs="113132";
+				uc.createClientes(cif,nombre,apellidos,direccion,tfn,email,web,tfn,obs);
 				
 			}
 	
