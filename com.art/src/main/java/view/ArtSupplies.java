@@ -15,7 +15,6 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
 
 import javax.swing.ImageIcon;
-import javax.swing.JComboBox;
 
 public class ArtSupplies extends JFrame {
     int xMouse, yMouse;
