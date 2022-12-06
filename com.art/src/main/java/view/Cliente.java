@@ -15,10 +15,13 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
 
 import javax.swing.ImageIcon;
+import javax.swing.JTextField;
 
 public class Cliente extends JFrame {
 	int xMouse, yMouse;
 	private JPanel contentPane;
+	private JTextField textNombre;
+	private JTextField textField;
 
 	/**
 	 * Launch the application.
@@ -293,8 +296,30 @@ public class Cliente extends JFrame {
 		
 		JLabel lblInsert = new JLabel("Insertar:");
 		lblInsert.setForeground(new Color(178, 34, 34));
-		lblInsert.setFont(new Font("Comic Sans MS", Font.BOLD, 15));
-		lblInsert.setBounds(27, 79, 76, 20);
+		lblInsert.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
+		lblInsert.setBounds(27, 94, 86, 20);
 		contentPane.add(lblInsert);
+		
+		textNombre = new JTextField();
+		textNombre.setBounds(115, 140, 125, 20);
+		contentPane.add(textNombre);
+		textNombre.setColumns(10);
+		
+		JLabel lblNombre = new JLabel("Nombre:");
+		lblNombre.setForeground(new Color(178, 34, 34));
+		lblNombre.setFont(new Font("Comic Sans MS", Font.BOLD, 15));
+		lblNombre.setBounds(27, 140, 86, 20);
+		contentPane.add(lblNombre);
+		
+		textField = new JTextField();
+		textField.setColumns(10);
+		textField.setBounds(115, 184, 125, 20);
+		contentPane.add(textField);
+		
+		JLabel lblNombre_1 = new JLabel("Nombre:");
+		lblNombre_1.setForeground(new Color(178, 34, 34));
+		lblNombre_1.setFont(new Font("Comic Sans MS", Font.BOLD, 15));
+		lblNombre_1.setBounds(27, 184, 86, 20);
+		contentPane.add(lblNombre_1);
 	}
 }
