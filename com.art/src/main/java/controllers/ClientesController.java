@@ -12,7 +12,7 @@ import org.hibernate.cfg.Configuration;
 import models.Clientes;
 
 public class ClientesController {
-	public String createClientes(String cif, String nom, String apes, String dir, int telf, String email, String web,
+	public String createClientes(int id, String nom, String apes, String dir, int telf, String email, String web,
 			int fax, String observaciones) {
 		SessionFactory sessionFactory = new Configuration().configure("hibernate.cfg.xml")
 				.addAnnotatedClass(Clientes.class).buildSessionFactory();
@@ -20,7 +20,7 @@ public class ClientesController {
 		Session session = sessionFactory.openSession();
 
 		try {
-			Clientes clientes = new Clientes(cif, nom, apes, dir, telf, email, web, fax, observaciones);
+			Clientes clientes = new Clientes(id, nom, apes, dir, telf, email, web, fax, observaciones);
 
 			session.beginTransaction();
 
@@ -38,7 +38,7 @@ public class ClientesController {
 		return "Error al registrar la entrada en clientes";
 	}
 
-	public String deleteCliente(int cif) {
+	public String deleteCliente(int id) {
 		SessionFactory sessionFactory = new Configuration().configure("hibernate.cfg.xml")
 				.addAnnotatedClass(Clientes.class).buildSessionFactory();
 
@@ -48,7 +48,7 @@ public class ClientesController {
 
 			session.beginTransaction();
 
-			Clientes clientes = session.get(Clientes.class, cif);
+			Clientes clientes = session.get(Clientes.class, id);
 
 			session.delete(clientes);
 
@@ -64,7 +64,7 @@ public class ClientesController {
 
 	}
 
-	public String getCliente(int cif) {
+	public String getCliente(int id) {
 
 		SessionFactory sessionFactory = new Configuration().configure("hibernate.cfg.xml")
 				.addAnnotatedClass(Clientes.class).buildSessionFactory();
@@ -73,7 +73,7 @@ public class ClientesController {
 
 			session.beginTransaction();
 
-			Clientes clientes = session.get(Clientes.class, cif);
+			Clientes clientes = session.get(Clientes.class, id);
 
 			session.getTransaction().commit();
 

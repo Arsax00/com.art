@@ -12,8 +12,8 @@ import javax.persistence.Table;
 
 public class Clientes implements Serializable {
 	@Id
-	@Column(name = "cif")
-	private String cif;
+	@Column(name = "id")
+	private int id;
 
 	@Column(name = "nombre")
 	private String nombre;
@@ -41,10 +41,10 @@ public class Clientes implements Serializable {
 
 	public Clientes() {}
 	
-	public Clientes(String cif, String nombre, String apellidos, String dir, int telf, String email, String web,
+	public Clientes(String id, String nombre, String apellidos, String dir, int telf, String email, String web,
 			int fax, String observaciones) {
 		super();
-		this.cif = cif;
+		this.id = id;
 		this.nombre = nombre;
 		this.apellidos = apellidos;
 		this.direccion = dir;
@@ -57,17 +57,17 @@ public class Clientes implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Clientes [id=" + cif + ", nombre=" + nombre + ", apellidos=" + apellidos + ", direccion=" + direccion
+		return "Clientes [id=" + id + ", nombre=" + nombre + ", apellidos=" + apellidos + ", direccion=" + direccion
 				+ ", telefono=" + telefono + ", email=" + email + ", web=" + web + ", fax=" + fax + ", observaciones="
 				+ observaciones + "]";
 	}
 
-	public String getCif() {
+	public int getId() {
 		return cif;
 	}
 
-	public void setCif(String cif) {
-		this.cif = cif;
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public String getNombre() {

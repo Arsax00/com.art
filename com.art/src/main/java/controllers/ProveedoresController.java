@@ -13,7 +13,7 @@ import org.hibernate.cfg.Configuration;
 import models.Proveedores;
 
 public class ProveedoresController {
-	public String createProveedor(String cif, String nom, String dir, int telf, String email, String web, int fax,
+	public String createProveedor(int id, String nom, String dir, int telf, String email, String web, int fax,
 			String observaciones) {
 		SessionFactory sessionFactory = new Configuration().configure("hibernate.cfg.xml")
 				.addAnnotatedClass(Proveedores.class).buildSessionFactory();
@@ -21,7 +21,7 @@ public class ProveedoresController {
 		Session session = sessionFactory.openSession();
 
 		try {
-			Proveedores proveedores = new Proveedores(cif, nom, dir, telf, email, web, fax, observaciones);
+			Proveedores proveedores = new Proveedores(id, nom, dir, telf, email, web, fax, observaciones);
 
 			session.beginTransaction();
 
@@ -39,7 +39,7 @@ public class ProveedoresController {
 		return "Error al registrar la entrada en proveedores";
 	}
 
-	public String deleteProveedor(int cif) {
+	public String deleteProveedor(int id) {
 		SessionFactory sessionFactory = new Configuration().configure("hibernate.cfg.xml")
 				.addAnnotatedClass(Proveedores.class).buildSessionFactory();
 
@@ -49,7 +49,7 @@ public class ProveedoresController {
 
 			session.beginTransaction();
 
-			Proveedores proveedores = session.get(Proveedores.class, cif);
+			Proveedores proveedores = session.get(Proveedores.class, id);
 
 			session.delete(proveedores);
 
@@ -65,7 +65,7 @@ public class ProveedoresController {
 
 	}
 
-	public String getProveedor(int cif) {
+	public String getProveedor(int id) {
 
 		SessionFactory sessionFactory = new Configuration().configure("hibernate.cfg.xml")
 				.addAnnotatedClass(Proveedores.class).buildSessionFactory();
