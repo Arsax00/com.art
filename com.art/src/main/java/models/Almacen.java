@@ -27,6 +27,8 @@ public class Almacen implements Serializable {
 	@Column(name = "precio_venta")
 	private float precio_venta;
 
+	public Almacen() {}
+	
 	public Almacen(String nombre, int cantidad, int pCompra, int pVenta) {
 		super();
 		this.nombre = nombre;

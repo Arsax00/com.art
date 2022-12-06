@@ -23,6 +23,8 @@ public class Ventas implements Serializable {
 	@Column(name = "cantidad")
 	private int cantidad;
 
+	public Ventas() {}
+	
 	public Ventas(String fecha, float precio, int cantidad) {
 		super();
 		this.fecha = fecha;
